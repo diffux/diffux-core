@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.email         = ['joe.lencioni@causes.com', 'henric.trotzig@causes.com']
   s.require_paths = ['lib']
   s.files         = Dir['lib/**/*.rb']
+  s.executables   = ['diffux-snapshot']
 
   s.required_ruby_version = '>= 2.0.0'
 
