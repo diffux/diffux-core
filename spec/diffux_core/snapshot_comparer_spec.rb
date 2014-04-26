@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'oily_png'
 
-describe SnapshotComparer do
+describe Diffux::SnapshotComparer do
 
   def image(width: 2, height: 2, color: ChunkyPNG::Color::WHITE)
     ChunkyPNG::Image.new(width, height, color)
@@ -11,7 +11,7 @@ describe SnapshotComparer do
     let(:png_before) { image }
     let(:png_after)  { image }
     let(:snapshot_comparer) do
-      SnapshotComparer.new(png_before, png_after)
+      described_class.new(png_before, png_after)
     end
     subject { snapshot_comparer.compare! }
 

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe DiffClusterFinder do
+describe Diffux::DiffClusterFinder do
   let(:rows)   { 100 }
-  let(:finder) { DiffClusterFinder.new(rows) }
+  let(:finder) { described_class.new(rows) }
 
   describe '#clusters' do
     subject { finder.clusters }
