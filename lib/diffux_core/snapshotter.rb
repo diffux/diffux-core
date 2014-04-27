@@ -8,7 +8,8 @@ module Diffux
   # for a given URL and viewoprt, and then saving that snapshot to a file and
   # storing any metadata on the Snapshot object.
   class Snapshotter
-    SCRIPT_PATH = File.join(File.dirname(__FILE__), 'script/take-snapshot.js').to_s
+    SCRIPT_PATH = File.join(File.dirname(__FILE__),
+                            'script/take-snapshot.js').to_s
 
     # @param url [String} the URL to snapshot
     # @param viewport_width [Integer] the width of the screen used when
@@ -16,6 +17,11 @@ module Diffux
     # @param outfile [File] where to store the snapshot PNG.
     # @param user_agent [String] an optional useragent string to used when
     #   requesting the page.
+    # @param crop_selector [String] an optional string containing a CSS
+    #   selector. If this is present, and the page consists something matching
+    #   it, the resulting snapshot image will only contain that element. If the
+    #   page contains multiple elements mathing the selector, only the first
+    #   element will be used.
     def initialize(url:     raise, viewport_width: raise,
                    outfile: raise, user_agent: nil,
                    crop_selector: nil)
