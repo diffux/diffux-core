@@ -17,8 +17,10 @@ module Diffux
     # @param user_agent [String] an optional useragent string to used when
     #   requesting the page.
     def initialize(url:     raise, viewport_width: raise,
-                   outfile: raise, user_agent: nil)
+                   outfile: raise, user_agent: nil,
+                   crop_selector: nil)
       @viewport_width = viewport_width
+      @crop_selector  = crop_selector
       @user_agent     = user_agent
       @outfile        = outfile
       @url            = url
@@ -34,6 +36,7 @@ module Diffux
       opts = {
         address: @url,
         outfile: @outfile,
+        cropSelector: @crop_selector,
         viewportSize: {
           width:  @viewport_width,
           height: @viewport_width,

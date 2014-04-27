@@ -26,6 +26,11 @@ OptionParser.new do |opts|
     options[:width] = w
   end
 
+  opts.on('-c', '--cropselector CROPSELECTOR',
+          'Limit the snapshot to a specific element') do |cs|
+    options[:crop_selector] = cs
+  end
+
   opts.on('-a', '--useragent USERAGENT',
           'Set a useragent header when loading the url') do |ua|
     options[:useragent] = ua
@@ -47,10 +52,10 @@ unless options[:outfile]
   exit 1
 end
 
-snapshot = Diffux::Snapshotter.new(
+Diffux::Snapshotter.new(
   viewport_width: options[:width],
+  crop_selector:  options[:crop_selector],
   user_agent:     options[:useragent],
   outfile:        options[:outfile],
-  url:            options[:url],
+  url:            options[:url]
 ).take_snapshot!
-

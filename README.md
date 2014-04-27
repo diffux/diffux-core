@@ -39,6 +39,15 @@ diffux-snapshot --url http://www.google.com \
                 --useragent "c3p0 (Netscape compatible)"
 ```
 
+You can limit the area that the snapshot image is taken for by providing a
+`cropselector` option:
+
+```bash
+diffux-snapshot --url http://www.yahoo.com \
+                --outfile yahoo.png -- \
+                --cropselector ".searchwrapper"
+```
+
 ### `diffux-compare`
 
 Compare two snapshots (or any images for that matter) and outputs a diff if the
