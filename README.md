@@ -5,7 +5,10 @@ diffux-core
 
 Core services used by [diffux/diffux].
 
+[Documentation]
+
 [diffux/diffux]: https://github.com/diffux/diffux
+[Documentation]: http://rubydoc.info/github/diffux/diffux-core
 
 ## Command-line tools
 
