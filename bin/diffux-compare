@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'diffux_core'
+require 'oily_png'
+require 'optparse'
+
+options = {
+  outfile: 'diff.png'
+}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: diffux-compare [options]'
+  opts.separator ''
+  opts.separator 'Options:'
+
+  opts.on('-b', '--before-image BEFORE_IMAGE',
+          'Specify a path to the before-image') do |img|
+    options[:before_image] = img
+  end
+  opts.on('-a', '--after-image AFTER_IMAGE',
+          'Specify a path to the after-image') do |img|
+    options[:after_image] = img
+  end
+
+  opts.on('-o', '--outfile OUTFILE',
+          'Specify where the diff image will be saved (if needed)') do |f|
+    options[:outfile] = f
+  end
+
+  opts.on_tail('-h', '--help', 'Show this message') do
+    puts opts
+    exit
+  end
+end.parse!(ARGV)
+
+help = '(use `diffux-compare -h` to see options)'
+unless options[:before_image]
+  puts "Missing BEFORE_IMAGE #{help}"
+  exit 1
+end
+unless options[:after_image]
+  puts "Missing AFTER_IMAGE #{help}"
+  exit 1
+end
+
+comparison = Diffux::SnapshotComparer.new(
+  ChunkyPNG::Image.from_file(options[:before_image]),
+  ChunkyPNG::Image.from_file(options[:after_image]),
+).compare!
+
+if img = comparison[:diff_image]
+  img.save(options[:outfile])
+  puts "DIFF: #{comparison[:diff_in_percent]}%"
+  exit 10
+end
