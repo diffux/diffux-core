@@ -48,6 +48,13 @@ diffux-snapshot --url http://www.yahoo.com \
                 --cropselector ".searchwrapper"
 ```
 
+In this example, if no element is found with a `searchwrapper` class on the
+page, the crop selector will be ignored and the snapshot will contain the
+entire page.
+
+If more than one element matches the crop selector, only the first one will be
+included in the snapshot image.
+
 ### `diffux-compare`
 
 Compare two snapshots (or any images for that matter) and outputs a diff if the
