@@ -2,7 +2,9 @@ diffux-core
 ===========
 [![Build Status](https://travis-ci.org/diffux/diffux-core.svg)](https://travis-ci.org/diffux/diffux-core)
 
-Core services used by diffux/diffux
+Core services used by [diffux/diffux].
+
+[diffux/diffux]: https://github.com/diffux/diffux
 
 ## Command-line tools
 
