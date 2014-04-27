@@ -1,5 +1,6 @@
 diffux-core
 ===========
+[![Build Status](https://travis-ci.org/diffux/diffux-core.svg)](https://travis-ci.org/diffux/diffux-core)
 
 Core services used by diffux/diffux
 
