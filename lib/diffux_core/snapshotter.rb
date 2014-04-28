@@ -18,7 +18,7 @@ module Diffux
     # @param user_agent [String] an optional useragent string to used when
     #   requesting the page.
     # @param crop_selector [String] an optional string containing a CSS
-    #   selector. If this is present, and the page consists something matching
+    #   selector. If this is present, and the page contains something matching
     #   it, the resulting snapshot image will only contain that element. If the
     #   page contains multiple elements mathing the selector, only the first
     #   element will be used.
