@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec', '>= 2.14.1'
   s.add_development_dependency 'mocha', '>= 1.0.0'
+  s.add_development_dependency 'codeclimate-test-reporter'
 end
