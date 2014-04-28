@@ -2,6 +2,7 @@ diffux-core
 ===========
 [![Build Status](https://travis-ci.org/diffux/diffux-core.svg)](https://travis-ci.org/diffux/diffux-core)
 [![Code Climate](https://codeclimate.com/github/diffux/diffux-core.png)](https://codeclimate.com/github/diffux/diffux-core)
+[![Coverage](https://codeclimate.com/github/diffux/diffux-core/coverage.png)](https://codeclimate.com/github/diffux/diffux-core)
 
 Core services used by [diffux/diffux].
 
