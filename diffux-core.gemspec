@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors       = ['Joe Lencioni', 'Henric Trotzig']
   s.email         = ['joe.lencioni@causes.com', 'henric.trotzig@causes.com']
   s.require_paths = ['lib']
-  s.files         = Dir['lib/**/*.rb']
+  s.files         = Dir['lib/**/*']
   s.executables   = ['diffux-snapshot', 'diffux-compare']
 
   s.required_ruby_version = '>= 2.0.0'
