@@ -32,7 +32,7 @@ module Diffux
       @url            = url
     end
 
-    # Takes a snapshot of the URL and saves it in the out_file as a PNG image.
+    # Takes a snapshot of the URL and saves it in the outfile as a PNG image.
     #
     # @return [Hash] a hash containing the following keys:
     #   title [String] the <title> of the page being snapshotted
