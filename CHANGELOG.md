@@ -1,4 +1,4 @@
-## master (unreleased}
+## 0.0.2
 
 - Set chunky_png dependency to 1.3.1.
 - Fix missing `take-snapshot.js` in bundled gem.
