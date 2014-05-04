@@ -89,4 +89,4 @@ diffux-compare --before-image google1.png \
 
 Here's an example of a diff.png output from `diffux-compare`:
 
-![Example of a Diffux diff](diff-example.png?raw=true "Example of a Diffux diff")
+![Example of a Diffux diff](https://diffux.github.io/diffux-core/images/diff-example.png "Example of a Diffux diff")
