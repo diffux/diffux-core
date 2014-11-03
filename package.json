@@ -1,0 +1,17 @@
+{
+  "name": "diffux-core",
+  "version": "0.0.2",
+  "description": "Diffux Core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diffux/diffux-core.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diffux/diffux-core/issues"
+  },
+  "homepage": "https://github.com/diffux/diffux-core",
+  "dependencies": {
+    "es5-shim": "^4.0.3"
+  }
+}
