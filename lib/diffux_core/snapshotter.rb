@@ -33,7 +33,7 @@ module Diffux
     #   title [String] the <title> of the page being snapshotted
     #   log   [String] a log of events happened during the snapshotting process
     def take_snapshot!
-      driver = Selenium::WebDriver.for :chrome
+      driver = Selenium::WebDriver.for :firefox
       driver.manage.window.resize_to(@viewport_width, @viewport_width * 16 / 9)
       driver.navigate.to @url
       disable_animations(driver)
@@ -54,20 +54,17 @@ module Diffux
     end
 
     def disable_animations(driver)
-      # FIXME: this script only works in webkit. Firefox complains about
-      # css.sheet not being a thing.
-      #
-      # This script was copied from the old take-snapshot.js
       driver.execute_script <<-EOS
         // CSS Transitions
-        var css   = document.createElement('style');
-        css.type  = 'text/css';
+        var css = document.createElement('style');
+        css.type = 'text/css';
+        var styles = ['', '-webkit-', '-moz-', '-ms-'].map(
+          function(prefix) {
+            return prefix + 'transition: none !important; ' +
+                   prefix + 'animation-duration: 0 !important;';
+          }).join(' ');
+        css.innerHTML = '* {' + styles + '}';
         document.head.appendChild(css);
-        var sheet = css.sheet;
-        sheet.addRule('*', '-webkit-transition: none !important;');
-        sheet.addRule('*', 'transition: none !important;');
-        sheet.addRule('*', '-webkit-animation-duration: 0 !important;');
-        sheet.addRule('*', 'animation-duration: 0 !important;');
 
         // jQuery
         if (window.jQuery) {
