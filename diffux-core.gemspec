@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'chunky_png', '~>1.3.1'
   s.add_dependency 'oily_png', '~> 1.1.1'
-  s.add_dependency 'phantomjs', '1.9.2.1'
+  s.add_dependency 'selenium-webdriver', '~>2.44.0'
   s.add_dependency 'diff-lcs', '~> 1.2'
 
   s.add_development_dependency 'rspec', '~> 2.14'

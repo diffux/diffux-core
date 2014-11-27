@@ -1,16 +1,11 @@
-require 'phantomjs'
-require 'json'
-%w(base gutter before after overlayed).each do |type|
-  require_relative "snapshot_comparison_image/#{type}"
-end
+require 'selenium-webdriver'
+require 'chunky_png'
+
 module Diffux
   # Snapshotter is responsible for delegating to PhantomJS to take the snapshot
   # for a given URL and viewoprt, and then saving that snapshot to a file and
   # storing any metadata on the Snapshot object.
   class Snapshotter
-    SCRIPT_PATH = File.join(File.dirname(__FILE__),
-                            'script/take-snapshot.js').to_s
-
     # @param url [String} the URL to snapshot
     # @param viewport_width [Integer] the width of the screen used when
     #   snapshotting
@@ -38,38 +33,52 @@ module Diffux
     #   title [String] the <title> of the page being snapshotted
     #   log   [String] a log of events happened during the snapshotting process
     def take_snapshot!
-      result = {}
-      opts = {
-        address: @url,
-        outfile: @outfile,
-        cropSelector: @crop_selector,
-        viewportSize: {
-          width:  @viewport_width,
-          height: @viewport_width,
-        },
-      }
-      opts[:userAgent] = @user_agent if @user_agent
-
-      run_phantomjs(opts) do |line|
-        begin
-          result = JSON.parse line, symbolize_names: true
-        rescue JSON::ParserError
-          # We only expect a single line of JSON to be output by our snapshot
-          # script. If something else is happening, it is likely a JavaScript
-          # error on the page and we should just forget about it and move on
-          # with our lives.
-        end
+      driver = Selenium::WebDriver.for :chrome
+      driver.manage.window.resize_to(@viewport_width, @viewport_width * 16 / 9)
+      driver.navigate.to @url
+      disable_animations(driver)
+      result = { title: driver.title }
+      driver.save_screenshot(@outfile)
+      if @crop_selector
+        elem = driver.find_element(:css, @crop_selector)
+        image = ChunkyPNG::Image.from_file(@outfile)
+        image.crop!(elem.location.x,
+                    elem.location.y,
+                    elem.size.width,
+                    elem.size.height)
+        image.save(@outfile)
       end
+
+      driver.quit
       result
     end
 
-    private
+    def disable_animations(driver)
+      # FIXME: this script only works in webkit. Firefox complains about
+      # css.sheet not being a thing.
+      #
+      # This script was copied from the old take-snapshot.js
+      driver.execute_script <<-EOS
+        // CSS Transitions
+        var css   = document.createElement('style');
+        css.type  = 'text/css';
+        document.head.appendChild(css);
+        var sheet = css.sheet;
+        sheet.addRule('*', '-webkit-transition: none !important;');
+        sheet.addRule('*', 'transition: none !important;');
+        sheet.addRule('*', '-webkit-animation-duration: 0 !important;');
+        sheet.addRule('*', 'animation-duration: 0 !important;');
 
-    def run_phantomjs(options)
-      Phantomjs.run('--ignore-ssl-errors=true',
-                    SCRIPT_PATH, options.to_json) do |line|
-        yield line
-      end
+        // jQuery
+        if (window.jQuery) {
+          jQuery.fx.off = true;
+          jQuery('*').stop(true, true);
+        }
+
+        // Prevent things like blinking cursors by un-focusing any focused
+        // elements
+        document.activeElement.blur();
+      EOS
     end
   end
 end

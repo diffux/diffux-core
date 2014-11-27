@@ -1,6 +1,9 @@
 require 'oily_png'
 require 'diff-lcs'
 require_relative 'diff_cluster_finder'
+%w(base gutter before after overlayed).each do |type|
+  require_relative "snapshot_comparison_image/#{type}"
+end
 
 module Diffux
   # This class is responsible for comparing two Snapshots and generating a diff.
