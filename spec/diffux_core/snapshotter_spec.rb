@@ -16,7 +16,7 @@ describe Diffux::Snapshotter do
                         url:            url)
   end
 
-  xdescribe '#take_snapshot!' do
+  describe '#take_snapshot!' do
     # needs to be rewritten for webdriver
   end
 end
