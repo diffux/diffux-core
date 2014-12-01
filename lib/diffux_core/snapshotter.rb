@@ -6,7 +6,7 @@ module Diffux
   # for a given URL and viewoprt, and then saving that snapshot to a file and
   # storing any metadata on the Snapshot object.
   class Snapshotter
-    # @param url [String} the URL to snapshot
+    # @param url [String] the URL to snapshot
     # @param viewport_width [Integer] the width of the screen used when
     #   snapshotting
     # @param outfile [File] where to store the snapshot PNG.
@@ -17,14 +17,17 @@ module Diffux
     #   it, the resulting snapshot image will only contain that element. If the
     #   page contains multiple elements mathing the selector, only the first
     #   element will be used.
+    # @param driver [Selenium::WebDriver] an already-initialized driver (can be
+    #   used to speed things up).
     def initialize(url:     raise, viewport_width: raise,
                    outfile: raise, user_agent: nil,
-                   crop_selector: nil)
+                   crop_selector: nil, driver: nil)
       @viewport_width = viewport_width
       @crop_selector  = crop_selector
       @user_agent     = user_agent
       @outfile        = outfile
       @url            = url
+      @driver         = driver
     end
 
     # Takes a snapshot of the URL and saves it in the outfile as a PNG image.
@@ -33,7 +36,7 @@ module Diffux
     #   title [String] the <title> of the page being snapshotted
     #   log   [String] a log of events happened during the snapshotting process
     def take_snapshot!
-      driver = Selenium::WebDriver.for :firefox
+      driver = @driver || Selenium::WebDriver.for(:firefox)
       driver.manage.window.resize_to(@viewport_width, @viewport_width * 16 / 9)
       driver.navigate.to @url
       disable_animations(driver)
