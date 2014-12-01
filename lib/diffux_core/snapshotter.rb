@@ -52,7 +52,7 @@ module Diffux
         image.save(@outfile)
       end
 
-      driver.quit
+      driver.quit unless @driver
       result
     end
 
