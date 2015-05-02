@@ -1,3 +1,7 @@
+## master (unreleased)
+
+- Change phantomjs dependency from 1.9.2.1 -> 1.9.8.0.
+
 ## 0.0.2
 
 - Set chunky_png dependency to 1.3.1.
