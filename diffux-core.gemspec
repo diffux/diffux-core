@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.summary       = 'Diffux Core'
   s.description   = 'Tools for taking and comparing responsive website snapshots'
   s.authors       = ['Joe Lencioni', 'Henric Trotzig']
-  s.email         = ['joe.lencioni@causes.com', 'henric.trotzig@causes.com']
+  s.email         = ['joe.lencioni@brigade.com', 'henric.trotzig@brigade.com']
   s.require_paths = ['lib']
   s.files         = Dir['lib/**/*']
   s.executables   = ['diffux-snapshot', 'diffux-compare']
