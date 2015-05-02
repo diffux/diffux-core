@@ -1,4 +1,4 @@
-## master (unreleased)
+## 0.0.3
 
 - Change phantomjs dependency from 1.9.2.1 -> 1.9.8.0.
 
