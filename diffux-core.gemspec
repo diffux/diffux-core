@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'phantomjs', '1.9.8.0'
   s.add_dependency 'diff-lcs', '~> 1.2'
 
-  s.add_development_dependency 'rspec', '~> 2.14'
+  s.add_development_dependency 'rspec', '~> 3.3'
   s.add_development_dependency 'mocha', '~> 1.0'
   s.add_development_dependency 'codeclimate-test-reporter'
 end
