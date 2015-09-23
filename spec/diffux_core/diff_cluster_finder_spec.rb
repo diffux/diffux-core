@@ -8,7 +8,7 @@ describe Diffux::DiffClusterFinder do
     subject { finder.clusters }
 
     context 'when no different rows have been reported' do
-      it { should be_empty }
+      it { is_expected.to be_empty }
     end
 
     context 'when the first row is different' do
@@ -93,7 +93,7 @@ describe Diffux::DiffClusterFinder do
     subject { finder.percent_of_rows_different }
 
     context 'when no different rows have been reported' do
-      it { should == 0.0 }
+      it { is_expected.to eq(0.0) }
     end
 
     context 'when one row is different' do
