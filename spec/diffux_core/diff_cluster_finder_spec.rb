@@ -15,15 +15,15 @@ describe Diffux::DiffClusterFinder do
       before { finder.row_is_different(0) }
 
       it 'has one cluster' do
-        subject.count.should == 1
+        expect(subject.count).to eq(1)
       end
 
       it 'has a cluster starting at 0' do
-        subject.first[:start].should == 0
+        expect(subject.first[:start]).to eq(0)
       end
 
       it 'has a cluster ending at 0' do
-        subject.first[:finish].should == 0
+        expect(subject.first[:finish]).to eq(0)
       end
     end
 
@@ -33,15 +33,15 @@ describe Diffux::DiffClusterFinder do
       end
 
       it 'has one cluster' do
-        subject.count.should == 1
+        expect(subject.count).to eq(1)
       end
 
       it 'has a cluster starting at the right row' do
-        subject.first[:start].should == rows - 4
+        expect(subject.first[:start]).to eq(rows - 4)
       end
 
       it 'has a cluster ending at the last line' do
-        subject.first[:finish].should == rows - 1
+        expect(subject.first[:finish]).to eq(rows - 1)
       end
     end
 
@@ -56,17 +56,17 @@ describe Diffux::DiffClusterFinder do
       end
 
       it 'has two clusters' do
-        subject.count.should == 2
+        expect(subject.count).to eq(2)
       end
 
       it 'has a correct first cluster' do
-        subject.first[:start].should  == 20
-        subject.first[:finish].should == 27
+        expect(subject.first[:start]).to eq(20)
+        expect(subject.first[:finish]).to eq(27)
       end
 
       it 'has a correct second cluster' do
-        subject[1][:start].should  == 60
-        subject[1][:finish].should == 61
+        expect(subject[1][:start]).to eq(60)
+        expect(subject[1][:finish]).to eq(61)
       end
     end
 
@@ -76,15 +76,15 @@ describe Diffux::DiffClusterFinder do
       end
 
       it 'has one cluster' do
-        subject.count.should == 1
+        expect(subject.count).to eq(1)
       end
 
       it 'has a cluster starting at the first row' do
-        subject.first[:start].should == 0
+        expect(subject.first[:start]).to eq(0)
       end
 
       it 'has a cluster ending at the last line' do
-        subject.first[:finish].should == rows - 1
+        expect(subject.first[:finish]).to eq(rows - 1)
       end
     end
   end
@@ -100,7 +100,7 @@ describe Diffux::DiffClusterFinder do
       before { finder.row_is_different(0) }
 
       it 'reports a one percent difference' do
-        subject.should == 1.0
+        expect(subject).to eq(1.0)
       end
     end
   end

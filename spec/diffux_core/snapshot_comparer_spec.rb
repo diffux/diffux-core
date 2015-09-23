@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'oily_png'
 
 describe Diffux::SnapshotComparer do
-
   def image(width: 2, height: 2, color: ChunkyPNG::Color::WHITE)
     ChunkyPNG::Image.new(width, height, color)
   end
@@ -16,84 +15,84 @@ describe Diffux::SnapshotComparer do
     subject { snapshot_comparer.compare! }
 
     context 'with identical snapshots' do
-      it 'should report no difference' do
-        subject[:diff_in_percent].should == 0.0
+      it 'reports no difference' do
+        expect(subject[:diff_in_percent]).to eq(0.0)
       end
 
-      it 'should report no diff image' do
-        subject[:diff_image].should be_nil
+      it 'reports no diff image' do
+        expect(subject[:diff_image]).to eq(nil)
       end
 
-      it 'should report no cluster differences' do
-        subject[:diff_clusters].should be_empty
+      it 'reports no cluster differences' do
+        expect(subject[:diff_clusters]).to be_empty
       end
     end
 
     context 'with entirely different snapshots' do
       let(:png_after) { image(color: ChunkyPNG::Color::BLACK) }
 
-      it 'should report a 100% difference' do
-        subject[:diff_in_percent].should == 100.0
+      it 'reports a 100% difference' do
+        expect(subject[:diff_in_percent]).to eq(100.0)
       end
 
-      it 'should report a diff image' do
-        subject[:diff_image].should_not be_nil
+      it 'reports a diff image' do
+        expect(subject[:diff_image]).to_not eq(nil)
       end
 
-      it 'should report one cluster difference' do
-        subject[:diff_clusters].count.should == 1
+      it 'reports one cluster difference' do
+        expect(subject[:diff_clusters].count).to eq(1)
       end
     end
 
     context 'when the after snapshot is half as tall as the before snapshot' do
       let(:png_after) { image(height: 1) }
 
-      it 'should report a 50% difference' do
-        subject[:diff_in_percent].should == 50.0
+      it 'reports a 50% difference' do
+        expect(subject[:diff_in_percent]).to eq(50.0)
       end
 
-      it 'should report one cluster difference' do
-        subject[:diff_clusters].count.should == 1
+      it 'reports one cluster difference' do
+        expect(subject[:diff_clusters].count).to eq(1)
       end
     end
 
     context 'when the after snapshot is twice as tall as the before snapshot' do
       let(:png_after) { image(height: 4) }
 
-      it 'should report a 50% difference' do
-        subject[:diff_in_percent].should == 50.0
+      it 'reports a 50% difference' do
+        expect(subject[:diff_in_percent]).to eq(50.0)
       end
 
       it 'returns an image of the correct height' do
-        subject[:diff_image].height.should == 4
+        expect(subject[:diff_image].height).to eq(4)
       end
 
-      it 'should report one cluster difference' do
-        subject[:diff_clusters].count.should == 1
+      it 'reports one cluster difference' do
+        expect(subject[:diff_clusters].count).to eq(1)
       end
     end
 
     context 'when the after snapshot half as wide as the before snapshot' do
       let(:png_after) { image(width: 1) }
 
-      it 'should report a 100% difference' do
-        subject[:diff_in_percent].should == 100.0
+      it 'reports a 100% difference' do
+        expect(subject[:diff_in_percent]).to eq(100.0)
       end
     end
 
     context 'when the before snapshot is twice as wide as the after snapshot' do
       let(:png_before) { image(width: 4) }
 
-      it 'should report a 100% difference' do
-        subject[:diff_in_percent].should == 100.0
+      it 'reports a 100% difference' do
+        expect(subject[:diff_in_percent]).to eq(100.0)
       end
     end
 
     context 'when the after snapshot is twice as wide as the before snapshot' do
       let(:png_after) { image(width: 4) }
 
-      it 'should report a 100% difference' do
-        subject[:diff_in_percent].should == 100.0
+      it 'reports a 100% difference' do
+        expect(subject[:diff_in_percent]).to eq(100.0)
       end
     end
   end
