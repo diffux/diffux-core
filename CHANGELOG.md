@@ -1,3 +1,8 @@
+## 0.0.4
+
+- Update for RSpec 3.
+- Bump oily_png dependency from 1.1.1 -> 1.2.0.
+
 ## 0.0.3
 
 - Change phantomjs dependency from 1.9.2.1 -> 1.9.8.0.
