@@ -48,7 +48,7 @@ comparison = Diffux::SnapshotComparer.new(
 ).compare!
 
 if img = comparison[:diff_image]
-  img.save(options[:outfile])
+  img.save(options[:outfile], :fast_rgb)
   puts "DIFF: #{comparison[:diff_in_percent]}%"
   exit 10
 end
