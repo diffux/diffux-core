@@ -1,3 +1,8 @@
+## 0.0.5
+
+- Avoid work when images are identical when comparing
+- Use :fast_rgb option when saving diff images
+
 ## 0.0.4
 
 - Update for RSpec 3.
