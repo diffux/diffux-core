@@ -14,8 +14,24 @@ module Diffux
 
     # @return [Hash]
     def compare!
-      sdiff      = Diff::LCS.sdiff(to_array_of_arrays(@png_before),
-                                   to_array_of_arrays(@png_after))
+      no_diff = {
+        diff_in_percent: 0,
+        diff_image: nil,
+        diff_clusters: []
+      }
+
+      # If these images are totally identical, we don't need to do any more
+      # work.
+      return no_diff if @png_before == @png_after
+
+      array_before = to_array_of_arrays(@png_before)
+      array_after = to_array_of_arrays(@png_after)
+
+      # If the arrays of arrays of colors are identical, we don't need to do any
+      # more work. This might happen if some of the headers are different.
+      return no_diff if array_before == array_after
+
+      sdiff = Diff::LCS.sdiff(array_before, array_after)
       cluster_finder  = DiffClusterFinder.new(sdiff.size)
       sprite, all_comparisons = initialize_comparison_images(
         [@png_after.width, @png_before.width].max, sdiff.size)
