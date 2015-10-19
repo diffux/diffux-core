@@ -1,5 +1,7 @@
 ## master (unreleased)
 
+## 0.0.6
+
 - Use :fast_rgba option when saving diff images
 
 ## 0.0.5
