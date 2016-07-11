@@ -1,5 +1,7 @@
 diffux-core
 ===========
+## Please note that this project is not actively maintained. Consider using [diffux_ci](https://github.com/diffux/diffux_ci) instead.
+
 [![Gem Version](https://badge.fury.io/rb/diffux-core.svg)](http://badge.fury.io/rb/diffux-core)
 [![Build Status](https://travis-ci.org/diffux/diffux-core.svg)](https://travis-ci.org/diffux/diffux-core)
 [![Code Climate](https://codeclimate.com/github/diffux/diffux-core.svg)](https://codeclimate.com/github/diffux/diffux-core)
